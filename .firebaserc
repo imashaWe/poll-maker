@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sms-sys": {
+      "hosting": {
+        "poll-maker": [
+          "sms-sys"
+        ]
+      }
+    }
+  }
+}

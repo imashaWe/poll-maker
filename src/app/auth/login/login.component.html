@@ -1,0 +1,58 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="wrapper">
+    <mat-card fxFlex="55" class="mat-elevation-z8">
+        <mat-card-content>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxFlex="60">
+                    <img src="assets/login.jpg" alt="" width="100%">
+                </div>
+                <div fxFlex="40">
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <div fxFlex="80">
+                            <h2>Login</h2>
+                            <p>Doesn't have an account yet? <a href="">Sing up</a></p>
+                            <form>
+                                <div fxLayout="column" fxLayoutAlign="center center">
+                                    <mat-form-field>
+                                        <mat-label>
+                                            Email
+                                        </mat-label>
+                                        <input matInput>
+
+                                    </mat-form-field>
+
+                                    <mat-form-field>
+                                        <mat-label>
+                                            Password
+                                        </mat-label>
+                                        <input matInput>
+                                    </mat-form-field>
+                                    <button mat-raised-button color="primary">Login</button>
+                                </div>
+                            </form>
+
+                            <br>
+
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                               <hr fxFlex="35">
+                                <small fxFlex="30" class="text-center">Or log in with</small>
+                               <hr fxFlex="35">
+                            </div>
+
+                            
+
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <button mat-stroked-button color="warn" class="btn-social">
+                                    <fa-icon [icon]="google"></fa-icon> Google
+                                </button>
+                                <button mat-stroked-button color="primary" class="btn-social">
+                                    <fa-icon [icon]="facebook"></fa-icon> Facebook
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+</div>
