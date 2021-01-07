@@ -26,7 +26,7 @@
                                         </mat-label>
                                         <input matInput>
                                     </mat-form-field>
-                                    <button mat-raised-button color="primary">Login</button>
+                                    <button mat-raised-button color="primary" (click)="login()">Login</button>
                                 </div>
                             </form>
 
@@ -41,10 +41,10 @@
                             
 
                             <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <button mat-stroked-button color="warn" class="btn-social">
+                                <button mat-stroked-button color="warn" class="btn-social" (click)="loginViaGoogle()">
                                     <fa-icon [icon]="google"></fa-icon> Google
                                 </button>
-                                <button mat-stroked-button color="primary" class="btn-social">
+                                <button mat-stroked-button color="primary" class="btn-social" (click)="loginViaFacebook()">
                                     <fa-icon [icon]="facebook"></fa-icon> Facebook
                                 </button>
                             </div>
