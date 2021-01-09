@@ -13,3 +13,6 @@ hr {
 .btn-social {
     padding: 1px 2rem 1px 2rem;
 }
+mat-card {
+    padding: 2rem 0 5rem 0;
+}

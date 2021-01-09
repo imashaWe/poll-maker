@@ -33,7 +33,7 @@ export class VoteComponent implements OnInit {
         this.title = data['title'];
         this.answers = data['answers'];
         this.totalVotes = data['totalVotes'];
-        this.pollStatus = 1;
+        //this.pollStatus = 1;
       } else {
         this.pollStatus = 0;
       }
@@ -52,10 +52,9 @@ export class VoteComponent implements OnInit {
   }
 
   async submitVote() {
-    console.log(this.answersList.selectedOptions.isSelected);
-    //const i: number = this.answersList.selectedOptions.selected[0]?.value;
-    // await this.pollService.setVote(this.id, i);
-    // this.tost.success('Success!')
+    const i: number = this.answersList.selectedOptions.selected[0]?.value;
+    await this.pollService.setVote(this.id, i);
+    this.tost.success('Success!');
   }
 
 }

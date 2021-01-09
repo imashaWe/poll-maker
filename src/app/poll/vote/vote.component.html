@@ -6,7 +6,7 @@
         <h1>Oops! This poll doesn't exist.</h1>
         <a mat-raised-button href="/">Go Home</a>
     </div>
-    <mat-card fxFlex="60" *ngIf="pollStatus == 1">
+    <mat-card fxFlex="60">
         <mat-card-header>
             <div mat-card-avatar *ngIf="isVoted">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary">check</mat-icon>
@@ -31,12 +31,16 @@
                     <p mat-line class="text-center">{{((a.vote/totalVotes)*100).toFixed(2)}}%</p>
                 </mat-list-option>
             </mat-selection-list>
+
         </mat-card-content>
+
         <mat-card-actions align="end">
+
             <button mat-raised-button color="primary" (click)="submitVote()"
                 [disabled]="!answersList.selectedOptions.isSelected || answersList.selectedOptions.selected[0]?.value == initIndex">
                 {{isVoted ? 'Edit':'Submit'}}
             </button>
+
         </mat-card-actions>
 
     </mat-card>
