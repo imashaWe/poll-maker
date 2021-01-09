@@ -2,16 +2,28 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 //import rout-guard
-import {LoginGuard} from './guards/login.guard';
+import { LoginGuard } from './guards/login.guard';
 
-// import componets
-import {CreateComponent} from './poll/create/create.component';
-import {LoginComponent} from './auth/login/login.component';
+// import components
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './auth/login/login.component';
+import { VoteComponent } from './poll/vote/vote.component'
+import { CreateComponent } from './poll/create/create.component';
 
 
 const routes: Routes = [
-  {path:'',component:CreateComponent,canActivate:[LoginGuard]},
-  {path:'login',component:LoginComponent},
+  { path: '', redirectTo: 'poll/create', pathMatch: 'full' },
+  {
+    path: 'poll',
+    component: HomeComponent,
+    canActivate:[LoginGuard],
+    children: [
+      { path: '', redirectTo: 'create', pathMatch: 'full' },
+      { path: 'create', component: CreateComponent },
+      { path: 'vote/:id', component: VoteComponent },
+    ]
+  },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

@@ -20,3 +20,32 @@ body {
 .text-left {
   text-align: left;
 }
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.click {
+  cursor: pointer;
+}
+
+.snack-bar-error {
+  background-color: red;
+  color: white;
+}
+
+.snack-bar-success {
+  background-color: green;
+  color: white;
+}

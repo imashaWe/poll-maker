@@ -1,0 +1,36 @@
+<br>
+<div fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card fxFlex="60">
+        <mat-card-header>
+            <div mat-card-avatar *ngIf="isVoted">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary">check</mat-icon>
+            </div>
+            <mat-card-title>
+                {{title}}
+            </mat-card-title>
+            <mat-card-subtitle *ngIf="isVoted">
+                You are voted! {{votedTime | date:'MMM d, y, h:mm:ss a'}}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+
+            <mat-selection-list #answersList [multiple]="false" >
+                <mat-list-option *ngFor="let a of answers;index as i" [value]="i" [selected]="i == initIndex">
+                    {{a.answer}}
+                    <mat-progress-bar mode="determinate" value="{{(a.vote/totalVotes)*100}}"></mat-progress-bar>
+                </mat-list-option>
+            </mat-selection-list>
+
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-raised-button color="primary" (click)="submitVote()" 
+                [disabled]="!answersList.selectedOptions.isSelected || answersList.selectedOptions.selected[0]?.value == initIndex"
+            >
+                {{isVoted ? 'Edit':'Submit'}}
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+
+</div>
