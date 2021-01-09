@@ -1,6 +1,5 @@
 <br>
-<div fxLayout="row" fxLayoutAlign="center center">
-
+<div fxLayout="row" fxLayoutAlign="center stretch">
     <mat-card fxFlex="60">
 
         <mat-card-title>
@@ -10,65 +9,61 @@
         <mat-card-content>
 
             <form #pollFrom="ngForm">
-               <div fxLayout="column" fxLayoutAlign="space-around start" >
-
-              
-                <mat-form-field width="100%">
-                    <mat-label>Title</mat-label>
-                    <textarea matInput rows="2" [(ngModel)]="formData.title" #titleField="ngModel" name="title" minlength="1" required></textarea>
-                    <mat-error *ngIf="titleField.invalid">Title is required</mat-error>
-                </mat-form-field>
+                <div fxLayout="column" fxLayoutAlign="space-around start">
 
 
-                <mat-checkbox [(ngModel)]="formData.restrictUnable" name="restrictUnable">Unable poll restrictions</mat-checkbox>
-                <br>
-                <div fXLayout="row" fxLayoutAlign="space-between start" style="width: 100%;">
-
-                    <mat-form-field fxFlex="40">
-                        <mat-label>From</mat-label>
-                        <input type="datetime-local" matInput [disabled]="!formData.restrictUnable" [(ngModel)]="formData.from" #fromField="ngModel" name="from" required>
-                        <mat-error *ngIf="fromField.invalid">From is required</mat-error>
-                    </mat-form-field >
-
-                    <mat-form-field fxFlex="40">
-                        <mat-label>To</mat-label>
-                        <input type="datetime-local" matInput [disabled]="!formData.restrictUnable" [(ngModel)]="formData.to" #toFiled="ngModel" name="to" required>
-                        <mat-error *ngIf="toFiled.invalid">To is required</mat-error>
+                    <mat-form-field width="100%">
+                        <mat-label>Title</mat-label>
+                        <textarea matInput rows="2" [(ngModel)]="formData.title" #titleField="ngModel" name="title"
+                            minlength="1" required></textarea>
+                        <mat-error *ngIf="titleField.invalid">Title is required</mat-error>
                     </mat-form-field>
 
-                    <mat-checkbox [disabled]="!formData.restrictUnable" [(ngModel)]="formData.isOneTime" name="isOneTime">One Time Vote</mat-checkbox>
+
+                    <mat-checkbox [(ngModel)]="formData.restrictUnable" name="restrictUnable">Unable poll restrictions
+                    </mat-checkbox>
+                    <br>
+                    <div fXLayout="row" fxLayoutAlign="space-between start" style="width: 100%;">
+
+                        <mat-form-field fxFlex="40">
+                            <mat-label>From</mat-label>
+                            <input type="datetime-local" matInput [disabled]="!formData.restrictUnable"
+                                [(ngModel)]="formData.from" #fromField="ngModel" name="from" required>
+                            <mat-error *ngIf="fromField.invalid">From is required</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="40">
+                            <mat-label>To</mat-label>
+                            <input type="datetime-local" matInput [disabled]="!formData.restrictUnable"
+                                [(ngModel)]="formData.to" #toFiled="ngModel" name="to" required>
+                            <mat-error *ngIf="toFiled.invalid">To is required</mat-error>
+                        </mat-form-field>
+
+                        <mat-checkbox [disabled]="!formData.restrictUnable" [(ngModel)]="formData.isOneTime"
+                            name="isOneTime" style="margin-top: 2rem;">One Time Vote</mat-checkbox>
+                    </div>
+
+                    <mat-form-field width="100%">
+                        <input type="text" matInput placeholder="Answer type here" [(ngModel)]="answer" name="answer"
+                            (keyup.enter)="addAnswer()">
+                        <button mat-icon-button matSuffix (click)="addAnswer()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                    <mat-selection-list [multiple]="false">
+                        <mat-list-option *ngFor="let a of formData.answers;index as i" [value]="i">
+                            <div mat-list-icon>{{i+1}}</div> 
+                            <div mat-line>
+                                {{a}}
+                                <button mat-icon-button color="warn" class="float-right"  (click)="deleteAnswer(i)" >
+                                    <mat-icon>clear</mat-icon>
+                                </button>
+                            </div>
+                           
+                        </mat-list-option>
+                    </mat-selection-list>
                 </div>
-              
-
-                <table width="100%">
-                    <tr>
-
-                        <td colspan="2">
-                            <ng-container matColumnDef="position">
-                                <mat-form-field>
-                                    <input type="text" matInput placeholder="Answer type here" [(ngModel)]="answer"
-                                        name="answer">
-                                </mat-form-field>
-                            </ng-container>
-                        </td>
-                        <td>
-                            <button mat-icon-button (click)="addAnswer()">
-                                <mat-icon>add_circle</mat-icon>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr *ngFor="let a of formData.answers;index as i">
-                        <td class="text-left" style="width: 2%;">{{i+1}}.</td>
-                        <td class="text-left">{{a}}</td>
-                        <td>
-                            <button mat-icon-button (click)="deleteAnswer(i)">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </td>
-                    </tr>
-
-                </table>
-            </div>
             </form>
 
         </mat-card-content>

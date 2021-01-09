@@ -29,7 +29,7 @@ export class CreateComponent implements OnInit {
   }
 
   deleteAnswer(i: number): void {
-    this.answers.splice(i, 1);
+    this.formData.answers.splice(i, 1);
   }
 
   publish(): void {

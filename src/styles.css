@@ -7,8 +7,11 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
 }
-
+.spacer {
+  flex: 1 1 auto;
+}
 .text-center {
   text-align: center;
 }
@@ -46,6 +49,6 @@ body {
 }
 
 .snack-bar-success {
-  background-color: green;
+  background-color:rgb(0,191,111);
   color: white;
 }

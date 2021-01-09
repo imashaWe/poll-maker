@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { PollService } from 'src/app/services/poll.service';
-import {  MatSelectionList } from '@angular/material/list';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSelectionList } from '@angular/material/list';
+import { TostService } from 'src/app/services/tost.service';
+
 @Component({
   selector: 'app-vote',
   templateUrl: './vote.component.html',
@@ -20,16 +21,23 @@ export class VoteComponent implements OnInit {
   isVoted: boolean;
   initIndex: number;
   isDisabled: boolean = true;
+  pollStatus: number;
 
-  constructor(private router: ActivatedRoute, private pollService: PollService,private snackBar:MatSnackBar) { }
+  constructor(private router: ActivatedRoute, private pollService: PollService, private tost: TostService) { }
 
   ngOnInit(): void {
-    this.id = this.router.snapshot.paramMap.get('id');
+    this.id = this.router.snapshot.paramMap.get('id') ?? '';
 
     this.pollService.pollSnapshot(this.id).subscribe(data => {
-      this.title = data['title'];
-      this.answers = data['answers'];
-      this.totalVotes = data['totalVotes'];
+      if (data) {
+        this.title = data['title'];
+        this.answers = data['answers'];
+        this.totalVotes = data['totalVotes'];
+        this.pollStatus = 1;
+      } else {
+        this.pollStatus = 0;
+      }
+
     });
   }
 
@@ -42,15 +50,12 @@ export class VoteComponent implements OnInit {
       }
     });
   }
-  
+
   async submitVote() {
-    const i: number = this.answersList.selectedOptions.selected[0]?.value;
-    await this.pollService.setVote(this.id, i);
-    this.snackBar.open( 'Success....!','',{
-      duration:2000,
-      horizontalPosition:'end',
-      verticalPosition:'top',
-    });
+    console.log(this.answersList.selectedOptions.isSelected);
+    //const i: number = this.answersList.selectedOptions.selected[0]?.value;
+    // await this.pollService.setVote(this.id, i);
+    // this.tost.success('Success!')
   }
 
 }

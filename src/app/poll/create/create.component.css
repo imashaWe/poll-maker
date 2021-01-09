@@ -1,5 +1,14 @@
 mat-form-field {
   width: 100%;
+  margin:1rem 0 1rem 0;
 }
 
-
+mat-card {
+  height: 40%;
+}
+mat-selection-list {
+  width: 100%;
+}
+/* .mat-option {
+  width: 100% !important;
+} */

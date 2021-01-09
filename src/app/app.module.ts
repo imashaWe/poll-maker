@@ -29,12 +29,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { LoginComponent } from './auth/login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CookieService } from 'ngx-cookie-service';
 import { VoteComponent } from './poll/vote/vote.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { VoteComponent } from './poll/vote/vote.component';
     HomeComponent,
     LoginComponent,
     VoteComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ import { VoteComponent } from './poll/vote/vote.component';
     MatProgressBarModule,
     MatSnackBarModule,
     MatCheckboxModule,
+    MatChipsModule,
     FontAwesomeModule
 
   ],

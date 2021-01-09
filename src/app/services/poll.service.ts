@@ -16,6 +16,8 @@ export class PollService {
     const pollsDocsRef = this.firestore.collection('polls');
     data.uid = user.uid;
     data.totalVotes = 0;
+    data.to = new Date(data.to);
+    data.from = new Date(data.from);
     const answers = data.answers.map((a) => { return { 'answer': a, 'vote': 0 } });
     data.answers = answers;
     const res = await pollsDocsRef.add(data);
@@ -58,6 +60,23 @@ export class PollService {
     const user = this.authService.getUser();
     const voteRef = this.firestore.collection('votes');
     return await voteRef.ref.where('pollId', "==", pollId).where('uid', "==", user.uid).limit(1).get();
+  }
+
+  async checkPoll(pollId: string): Promise<number> {
+    /*
+        poll available 1
+        poll end -2
+        poll not started -1
+        poll not exist 0
+    */
+
+    const poll = await this.firestore.collection('polls').doc(pollId);
+    if (poll != null) {
+      return 1;
+    } else {
+      return 0;
+    }
+
   }
 
 }

@@ -12,7 +12,7 @@ export class TostService {
       this.snackBar.openFromComponent(SnackBarView,{
         data:{isError:true,text:text},
         duration: 2000,
-        horizontalPosition: 'end',
+        horizontalPosition: 'center',
         verticalPosition: 'top',
         panelClass: ['snack-bar-error']
       })
@@ -22,7 +22,7 @@ export class TostService {
       this.snackBar.openFromComponent(SnackBarView,{
         data:{isError:false,text:text},
         duration: 2000,
-        horizontalPosition: 'end',
+        horizontalPosition: 'center',
         verticalPosition: 'top',
         panelClass: ['snack-bar-success']
       })

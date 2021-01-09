@@ -1,13 +1,31 @@
-<mat-toolbar color="primary">
+<div fxLayout="column" fxFlexFill>
+
+  <mat-toolbar color="primary">
     <span>POLL MEKER</span>
     <span class="spacer"></span>
-    <!-- <small class="text-right">{{userData.name}}</small> -->
-    
+
     <img src="{{userData.photoUrl}}" alt="Avatar" class="avatar click" [matMenuTriggerFor]="menu">
     <mat-menu #menu="matMenu">
       <small mat-menu-item>{{userData.name}}</small>
       <hr>
-      <button mat-menu-item (click)="logout()"><mat-icon>exit_to_app</mat-icon> Logout</button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon> Logout
+      </button>
     </mat-menu>
   </mat-toolbar>
-  <router-outlet></router-outlet>
+
+  <div fxFlex>
+    <router-outlet></router-outlet>
+  </div>
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row >
+      <small style="margin: auto;" class="text-center">
+        Copyright &#169; 2021 AlgoLab.Inc.All rights
+        <br>
+        reserved.
+      </small>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+</div>
