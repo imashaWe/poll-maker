@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateComponent } from './poll/create/create.component';
+import { CreateComponent } from './pages/poll/create/create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 
 import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
+
+import {ScrollingModule}from '@angular/cdk/scrolling';
 
 // import angular flex-layout
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -27,16 +29,19 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { LoginComponent } from './auth/login/login.component';
+import { LoginComponent } from './pages/auth/login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CookieService } from 'ngx-cookie-service';
-import { VoteComponent } from './poll/vote/vote.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { VoteComponent } from './pages/poll/vote/vote.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +51,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     LoginComponent,
     VoteComponent,
     PageNotFoundComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,8 +74,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatSnackBarModule,
     MatCheckboxModule,
     MatChipsModule,
-    FontAwesomeModule
-
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+    FontAwesomeModule,
+    ScrollingModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

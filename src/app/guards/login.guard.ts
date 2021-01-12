@@ -8,7 +8,8 @@ import { AngularFireAuth } from '@angular/fire/auth'
   providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
-  constructor(private _fireauth: AngularFireAuth, private _router: Router) { }
+  constructor(private _fireauth: AngularFireAuth, private router: Router,) {
+  }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -19,7 +20,7 @@ export class LoginGuard implements CanActivate {
         if (authState) {
           return true
         } else {
-          this._router.navigate(['/login'])
+          this.router.navigate(['/login'],{queryParams:{'redirectTo':state.url}});
           return false
         }
       }),

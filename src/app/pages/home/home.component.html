@@ -1,0 +1,50 @@
+<div fxLayout="column" fxFlexFill class="header">
+
+  <mat-toolbar color="primary" class="mat-elevation-z8">
+
+    <img src="assets/logo.png" alt="" width="2%">
+    <span style="margin-left:5px;"> Online Poll Maker</span>
+
+
+    <!-- <div class="nav-btn-group">
+      <a mat-button href="https://www.google.com/" target="_blank">Home</a>
+      <a mat-button href="https://www.google.com/" target="_blank">Create</a>
+      <a mat-button href="https://www.google.com/" target="_blank">My Quiz</a>
+      <a mat-button href="https://www.google.com/" target="_blank">About</a>
+    </div> -->
+    <span class="spacer"></span>
+
+    <ng-template [ngIf]="userData">
+      <img src="{{userData.photoUrl}}" alt="Avatar" class="avatar click" [matMenuTriggerFor]="menu">
+      <mat-menu #menu="matMenu">
+        <small mat-menu-item>{{userData.name}}</small>
+        <hr>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon> Logout
+        </button>
+      </mat-menu>
+    </ng-template>
+
+    <ng-template [ngIf]="!userData">
+      <a mat-button routerLink="/login">Log in</a>
+      <a mat-button routerLink="/login">Sign up</a>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">person</mat-icon>
+    </ng-template>
+
+  </mat-toolbar>
+
+  <div fxFlex class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+  <mat-toolbar color="primary" class="footer">
+    <mat-toolbar-row>
+      <small style="margin: auto;" class="text-center">
+        Copyright &#169; 2021 AlgoLab.Inc.All rights
+        <br>
+        reserved.
+      </small>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+</div>

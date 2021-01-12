@@ -8,8 +8,10 @@
     </div>
     <mat-card fxFlex="60">
         <mat-card-header>
-            <div mat-card-avatar *ngIf="isVoted">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" color="primary">check</mat-icon>
+            <div mat-card-avatar>
+                <button mat-mini-fab color="primary" matTooltip="Share this poll online" aria-label="Example icon button with a delete icon">
+                    <mat-icon>share</mat-icon>
+                </button>
             </div>
             <mat-card-title>
                 {{title}}
@@ -24,12 +26,18 @@
         <mat-card-content>
 
             <mat-selection-list #answersList [multiple]="false">
-                <mat-list-option *ngFor="let a of answers;index as i" [value]="i" [selected]="i == initIndex">
-                    <div mat-list-icon>{{i+1}}</div>
-                    <p mat-line> {{a.answer}}</p>
-                    <mat-progress-bar mat-line mode="determinate" value="{{(a.vote/totalVotes)*100}}"></mat-progress-bar>
-                    <p mat-line class="text-center">{{((a.vote/totalVotes)*100).toFixed(2)}}%</p>
-                </mat-list-option>
+                <cdk-virtual-scroll-viewport itemSize="50" class="answers-viewport">
+
+                    <mat-list-option *cdkVirtualFor="let a of answers;index as i" [value]="i"
+                        [selected]="i == initIndex">
+                        <div mat-list-icon>{{i+1}}</div>
+                        <p mat-line> {{a.answer}}</p>
+                        <mat-progress-bar mat-line mode="determinate" value="{{(a.vote/totalVotes)*100}}">
+                        </mat-progress-bar>
+                        <p mat-line class="text-center">{{((a.vote/totalVotes)*100).toFixed(2)}}%</p>
+                    </mat-list-option>
+
+                </cdk-virtual-scroll-viewport>
             </mat-selection-list>
 
         </mat-card-content>

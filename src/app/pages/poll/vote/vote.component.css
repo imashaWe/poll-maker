@@ -1,0 +1,8 @@
+.card-avatar {
+  background-color: green;
+  background-size: cover;
+}
+.answers-viewport {
+  height: 500px;
+  width: 100%;
+}

@@ -6,8 +6,8 @@ import { TostService } from 'src/app/services/tost.service';
 
 @Component({
   selector: 'app-vote',
-  templateUrl: './vote.component.html',
-  styleUrls: ['./vote.component.css']
+  templateUrl: 'vote.component.html',
+  styleUrls: ['vote.component.css']
 })
 export class VoteComponent implements OnInit {
 
@@ -40,6 +40,19 @@ export class VoteComponent implements OnInit {
 
     });
   }
+  // sortList(answers:[]): [] {
+
+  //   if (this.totalVotes > 0) {
+  //     for (let a in answers) {
+  //       c
+  //     }
+  //   }
+  //   return [];
+  // }
+
+  // clacVote(votes:number):number {
+  //   return votes / this.totalVotes;
+  // }
 
   ngAfterViewInit() {
     this.pollService.voteDataSnapshot(this.id).onSnapshot(data => {

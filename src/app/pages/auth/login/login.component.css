@@ -1,0 +1,29 @@
+.wrapper {
+  padding-top: 5%;
+}
+mat-form-field {
+  width: 100%;
+}
+form button {
+  width: 100%;
+}
+hr {
+  width: 60%;
+}
+.btn-social {
+  padding: 1px 2rem 1px 2rem;
+}
+mat-card {
+  padding: 2rem 0 5rem 0;
+}
+
+.wrapper {
+  background-image: url("/../../assets/bg-cover.png");
+  background-color: #cccccc;
+
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}

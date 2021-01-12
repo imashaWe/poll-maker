@@ -1,0 +1,23 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.footer {
+  position:fixed;
+  bottom:0px; 
+}
+.header {
+  position: fixed;
+  top: opx;
+}
+.container {
+  overflow: scroll;
+}
+.nav-btn-group {
+  display: table-cell;
+  width: 490px;
+}
+
+.nav-btn-group .mat-button-base {
+  margin: 8px 8px 8px 0;
+}

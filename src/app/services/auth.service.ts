@@ -10,16 +10,18 @@ import { UserData } from 'src/app/models/user-data';
 })
 export class AuthService {
 
-  constructor(private _fireAuth: AngularFireAuth, private cookie: CookieService) { }
+  constructor(private fireAuth: AngularFireAuth, private cookie: CookieService) { }
 
   getUser(): UserData {
-    return JSON.parse(this.cookie.get('user'));
+    const user = this.cookie.get('user');
+    if (!user) return null;
+    return JSON.parse(user);
   }
 
   async loginViaGoogle(): Promise<Boolean> {
     const provider = new firebase.auth.GoogleAuthProvider();
     try {
-      const res = await this._fireAuth.signInWithPopup(provider);
+      const res = await this.fireAuth.signInWithPopup(provider);
       if (res.user != null) {
         const user = res.user;
         this.setLoginData(user.uid, user.displayName, user.photoURL);
@@ -33,12 +35,30 @@ export class AuthService {
     }
   }
 
+  async loginViaFacebook(): Promise<Boolean> {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    try {
+      const res = await this.fireAuth.signInWithPopup(provider);
+      if (res.user != null) {
+        const user = res.user;
+        this.setLoginData(user.uid, user.displayName, user.photoURL);
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
   async logout(): Promise<void> {
-    await this._fireAuth.signOut();
+    this.cookie.delete('user');
+    await this.fireAuth.signOut();
   }
 
   setLoginData(uid: string, name: string, photoUrl: string): void {
-    this.cookie.set('user', JSON.stringify({ 'uid': uid, 'name': name, 'photoUrl': photoUrl }),356 * 100);
+    this.cookie.delete('user');
+    this.cookie.set('user', JSON.stringify({ 'uid': uid, 'name': name, 'photoUrl': photoUrl }), {expires:356 * 100,path:'/'});
   }
 
 }

@@ -3,30 +3,31 @@ import { Routes, RouterModule } from '@angular/router';
 
 //import rout-guard
 import { LoginGuard } from './guards/login.guard';
-import {PollGuard} from 'src/app/guards/poll.guard';
+import { PollGuard } from 'src/app/guards/poll.guard';
 
 // import components
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './auth/login/login.component';
-import { VoteComponent } from './poll/vote/vote.component'
-import { CreateComponent } from './poll/create/create.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component'
+import { LoginComponent } from './pages/auth/login/login.component';
+import { VoteComponent } from './pages/poll/vote/vote.component'
+import { CreateComponent } from './pages/poll/create/create.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'poll/create', pathMatch: 'full' },
+  { path: '', component: HomeComponent, children: [{ path: '', component: WelcomeComponent }] },
   {
     path: 'poll',
     component: HomeComponent,
-    canActivate:[LoginGuard],
+    canActivate: [LoginGuard],
     children: [
       { path: '', redirectTo: 'create', pathMatch: 'full' },
       { path: 'create', component: CreateComponent },
-      { path: 'vote/:id', component: VoteComponent},
-      { path: '**', component: PageNotFoundComponent },
+      { path: 'vote/:id', component: VoteComponent }
     ]
   },
   { path: 'login', component: LoginComponent },
+  { path: '**', component: HomeComponent, children: [{ path: '', component: PageNotFoundComponent }]},
 ];
 
 @NgModule({

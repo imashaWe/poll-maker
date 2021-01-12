@@ -50,18 +50,23 @@
                             <mat-icon>add</mat-icon>
                         </button>
                     </mat-form-field>
-
+                    
                     <mat-selection-list [multiple]="false">
-                        <mat-list-option *ngFor="let a of formData.answers;index as i" [value]="i">
-                            <div mat-list-icon>{{i+1}}</div> 
-                            <div mat-line>
-                                {{a}}
-                                <button mat-icon-button color="warn" class="float-right"  (click)="deleteAnswer(i)" >
-                                    <mat-icon>clear</mat-icon>
-                                </button>
-                            </div>
+                        <cdk-virtual-scroll-viewport itemSize="50" class="answers-viewport" *ngIf="formData.answers.length > 0" >
+                            
+                                <mat-list-option *cdkVirtualFor="let a of formData.answers;index as i" [value]="i">
+                                    
+                                    <div mat-list-icon>{{i+1}}</div>
+                                    <div mat-line>
+                                        {{a}}
+                                        <button mat-icon-button color="warn" class="float-right"(click)="deleteAnswer(i)">
+                                            <mat-icon>clear</mat-icon>
+                                        </button>
+                                    </div>
+
+                                </mat-list-option>
                            
-                        </mat-list-option>
+                        </cdk-virtual-scroll-viewport>
                     </mat-selection-list>
                 </div>
             </form>
