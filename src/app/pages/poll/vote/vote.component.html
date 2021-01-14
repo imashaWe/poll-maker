@@ -6,7 +6,7 @@
         <h1>Oops! This poll doesn't exist.</h1>
         <a mat-raised-button href="/">Go Home</a>
     </div>
-    <mat-card fxFlex="60">
+    <mat-card fxFlex="60" [style.display]="pollStatus == 0 ?'none':'block'">
         <mat-card-header>
             <div mat-card-avatar>
                 <button mat-mini-fab color="primary" matTooltip="Share this poll online" aria-label="Example icon button with a delete icon">
@@ -32,9 +32,9 @@
                         [selected]="i == initIndex">
                         <div mat-list-icon>{{i+1}}</div>
                         <p mat-line> {{a.answer}}</p>
-                        <mat-progress-bar mat-line mode="determinate" value="{{(a.vote/totalVotes)*100}}">
+                        <mat-progress-bar mat-line mode="determinate" value="{{a.pa * 100}}">
                         </mat-progress-bar>
-                        <p mat-line class="text-center">{{((a.vote/totalVotes)*100).toFixed(2)}}%</p>
+                        <p mat-line class="text-center">{{(a.pa).toFixed(2)}}%</p>
                     </mat-list-option>
 
                 </cdk-virtual-scroll-viewport>
@@ -46,7 +46,7 @@
 
             <button mat-raised-button color="primary" (click)="submitVote()"
                 [disabled]="!answersList.selectedOptions.isSelected || answersList.selectedOptions.selected[0]?.value == initIndex">
-                {{isVoted ? 'Edit':'Submit'}}
+                {{isVoted ? 'Resubmit':'Submit'}}
             </button>
 
         </mat-card-actions>

@@ -31,28 +31,38 @@ export class VoteComponent implements OnInit {
     this.pollService.pollSnapshot(this.id).subscribe(data => {
       if (data) {
         this.title = data['title'];
-        this.answers = data['answers'];
         this.totalVotes = data['totalVotes'];
-        //this.pollStatus = 1;
+        this.answers = this.sortList(data['answers']);
+        this.sortList(this.answers);
+        this.pollStatus = 1;
       } else {
-        this.pollStatus = 0;
+       this.pollStatus = 0;
       }
 
     });
   }
-  // sortList(answers:[]): [] {
 
-  //   if (this.totalVotes > 0) {
-  //     for (let a in answers) {
-  //       c
-  //     }
-  //   }
-  //   return [];
-  // }
+  sortList(answers: []): any {
+    var answersList = answers.map((a) => ({ answer: a['answer'], pa: this.clacVote(a['vote']) }));
+    if (this.totalVotes) {
+      const l = answersList.length;
+      for (let i = l - 1; i > 0; i--) {
+        for (let j = i; j > 0; j--) {
+          if (answersList[j]['pa'] > answersList[j - 1]['pa']) {
+            const temp = answersList[j];
+            answersList[j] = answersList[j - 1];
+            answersList[j - 1] = temp;
+          }
+        }
+      }
+    }
+    console.log(answersList);
+    return answersList;
+  }
 
-  // clacVote(votes:number):number {
-  //   return votes / this.totalVotes;
-  // }
+  clacVote(votes: number): number {
+    return votes / this.totalVotes;
+  }
 
   ngAfterViewInit() {
     this.pollService.voteDataSnapshot(this.id).onSnapshot(data => {
@@ -66,8 +76,8 @@ export class VoteComponent implements OnInit {
 
   async submitVote() {
     const i: number = this.answersList.selectedOptions.selected[0]?.value;
-    await this.pollService.setVote(this.id, i);
-    this.tost.success('Success!');
+    //await this.pollService.setVote(this.id, i);
+    this.tost.success('Your vote has been submitted!');
   }
 
 }

@@ -11,6 +11,7 @@
   top: opx;
 }
 .container {
+  background-color: rgb(247,247,247);
   overflow: scroll;
 }
 .nav-btn-group {

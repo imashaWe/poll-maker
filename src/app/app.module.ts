@@ -42,6 +42,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { VoteComponent } from './pages/poll/vote/vote.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { TostComponent } from './widget/tost/tost.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
     VoteComponent,
     PageNotFoundComponent,
     WelcomeComponent,
+    TostComponent,
   ],
   imports: [
     BrowserModule,
